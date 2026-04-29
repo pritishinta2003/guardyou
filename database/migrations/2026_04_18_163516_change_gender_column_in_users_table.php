@@ -3,26 +3,30 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->enum('gender', ['P', 'W'])->nullable()->change();
+            $table->string('gender')->nullable()->change();
         });
+
+        // Hapus constraint lama kalau ada
+        DB::statement("ALTER TABLE users DROP CONSTRAINT IF EXISTS users_gender_check");
+
+        // Tambahkan constraint baru
+        DB::statement("ALTER TABLE users ADD CONSTRAINT users_gender_check CHECK (gender IN ('P', 'W'))");
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
+        // Hapus constraint saat rollback
+        DB::statement("ALTER TABLE users DROP CONSTRAINT IF EXISTS users_gender_check");
+
         Schema::table('users', function (Blueprint $table) {
-             $table->string('gender')->nullable()->change();
+            $table->string('gender')->nullable()->change();
         });
     }
 };
