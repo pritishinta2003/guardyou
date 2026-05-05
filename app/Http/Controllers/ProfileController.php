@@ -72,23 +72,21 @@ class ProfileController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
+   
     public function updateProfile(Request $request)
     {
         $user = auth()->user();
-
         $request->validate([
             'name'     => 'required|string|max:255',
             'email'    => 'required|email',
             'password' => 'nullable|min:6',
             'phone_number'    => 'nullable|string|max:20',
             'avatar'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'gender'   => 'required|in:Pria,Wanita',
-            'address' => 'nullable|string|min:10|max:1000'
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->phone_number = $request->phone;
+        $user->phone_number = $request->phone_number;
         $user->gender = $request->gender;
         $user->address= $request->address;
 
@@ -97,14 +95,28 @@ class ProfileController extends Controller
         }
 
         if ($request->hasFile('avatar')) {
-            // Hapus foto l
-            if ($user->avatar && file_exists(public_path('uploads/' . $user->avatar))) {
-                unlink(public_path('uploads/' . $user->avatar));
+
+            $destination = public_path('uploads');
+
+            // pastikan folder ada
+            if (!file_exists($destination)) {
+                mkdir($destination, 0775, true);
+            }
+
+            // hapus foto lama (lebih aman pakai is_file)
+            if ($user->avatar && is_file($destination . '/' . $user->avatar)) {
+                unlink($destination . '/' . $user->avatar);
             }
 
             $file = $request->file('avatar');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads'), $filename);
+
+            // nama file unik + aman
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+            // pindahkan file
+            $file->move($destination, $filename);
+
+            // simpan ke database
             $user->avatar = $filename;
         }
 
