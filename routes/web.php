@@ -65,7 +65,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/bookings/{booking}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
 
         Route::get('/user/profile', [ProfileController::class, 'profile'])->name('user.profile');
-        Route::put('/profile', [ProfileController::class, 'updateProfile'])->name('user.profile.update');
+        Route::put('/user/profile', [ProfileController::class, 'updateProfile'])->name('user.profile.update');
     });
 
     // Booking detail (owner, assigned bodyguard, or admin)
