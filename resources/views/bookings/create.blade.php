@@ -238,7 +238,7 @@
             <div class="asset-visual-mini">
                 <div class="asset-initial">{{ strtoupper(substr($bodyguard->user->name, 0, 1)) }}</div>
                 @if($bodyguard->user->avatar)
-                    <img src="{{ asset('storage/' . $bodyguard->user->avatar) }}"
+                    <img src="{{ asset('uploads/' . $bodyguard->user->avatar) }}"
                          alt="{{ $bodyguard->user->name }}"
                          onerror="this.style.display='none'">
                 @endif
