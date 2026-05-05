@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -832,10 +832,10 @@
                     <div class="profile-dropdown" role="menu">
                         <div class="dropdown-header">
                             <div class="dropdown-header-avatar">
-                                @if(auth()->user()->photo && file_exists(public_path('uploads/' . auth()->user()->photo)))
-                                    <img src="{{ asset('uploads/' . auth()->user()->photo) }}"
+                                @if(auth()->user()->avatar && file_exists(public_path('uploads/' . auth()->user()->avatar)))
+                                    <img src="{{ asset('uploads/' . auth()->user()->avatar) }}"
                                          alt="{{ auth()->user()->name }}"
-                                         class="w-full h-full object-cover rounded-full">
+                                         class="w-full h-full object-cover rounded square-full">
                                 @else
                                     {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                                 @endif
