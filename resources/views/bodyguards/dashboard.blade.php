@@ -463,7 +463,7 @@
                         Detail tugas
                     </a>
                     <a href="{{ route('chat.show', $mission) }}" class="card-link" style="color:#60a5fa; margin-left:auto;">
-                        📡 Chat Aman
+                        Chat Aman
                     </a>
                 </div>
             </div>
@@ -496,7 +496,7 @@
             
                     <div class="card-actions">
                         <a href="{{ route('bookings.show', $mission) }}" class="btn-primary" style="width:100%; text-align:center; padding:0.8rem; font-size:0.75rem;">
-                            Terima Order
+                            Rincian
                         </a>
                     </div>
                 </div>
