@@ -19,8 +19,11 @@
         overflow: hidden;
     }
     .dossier-visual img {
-        width: 100%; height: 100%; object-fit: cover;
-    }
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+    opacity: 0.5; 
+}
     .dossier-visual::after {
         content: 'PENGAWAL ELIT';
         position: absolute; bottom: 2rem; left: 2rem;
