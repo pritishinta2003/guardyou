@@ -71,10 +71,14 @@
     .asset-mini-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
     .asset-ava {
         width: 60px; height: 60px; border-radius: 50%;
-        background: #1a232c; border: 2px solid var(--color-gold);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.5rem; font-weight: 900;
-    }
+        background-color: #1a232c; 
+        object-fit: cover; 
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+     }
     .asset-name { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; display: block; }
     .asset-vocation { font-size: 0.6rem; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em; }
 
