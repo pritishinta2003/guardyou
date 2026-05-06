@@ -164,11 +164,18 @@
             <div class="action-panel">
                 <span class="briefing-label" style="margin-bottom:2rem;">Personel Ditugaskan</span>
                 <div class="asset-mini-row">
-                    <div class="asset-ava">{{ substr($booking->bodyguard->user->name, 0, 1) }}</div>
-                    <div>
-                        <span class="asset-name">{{ $booking->bodyguard->user->name }}</span>
-                        <span class="asset-vocation">Guard Anda</span>
-                    </div>
+                    @if($booking->bodyguard->user->avatar)
+                        <img class="asset-ava" src="{{ asset('uploads/' . $booking->bodyguard->user->avatar) }}" 
+                             alt="{{ $booking->bodyguard->user->name }}">
+                    @else
+                        <div class="asset-ava">{{ substr($booking->bodyguard->user->name, 0, 1) }}</div>
+                    @endif
+                
+                            <!-- TEKS -->
+                            <div>
+                                <span class="asset-name">{{ $booking->bodyguard->user->name }}</span>
+                                <span class="asset-vocation">Guard Anda</span>
+                            </div>
                 </div>
 
                 <div style="margin-top:3rem;">
